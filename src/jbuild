@@ -1,7 +1,8 @@
 (jbuild_version 1)
 
 (library
- ((name            blake2)
-  (public_name     blake2)
+ ((name            tezoscrypto)
+  (public_name     tezoscrypto)
+  (modules         (blake2 sha))
   (libraries       (cstruct))
   (c_names         (blake2b-ref))))

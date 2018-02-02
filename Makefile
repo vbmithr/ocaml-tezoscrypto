@@ -1,5 +1,5 @@
 all:
-	jbuilder build @install @runtest-blake2
+	jbuilder build @install @runtest-tezoscrypto
 
 .PHONY: clean
 clean:

@@ -28,7 +28,7 @@ module Blake2b = struct
   external final : Cstruct.buffer -> Cstruct.buffer -> int =
     "ml_blake2b_final" [@@noalloc]
 
-  external direct :
+  external digest :
     Cstruct.buffer -> Cstruct.buffer -> Cstruct.buffer -> int =
     "ml_blake2b" [@@noalloc]
 
@@ -64,12 +64,12 @@ module Blake2b = struct
       (fun () -> final t.Cstruct.buffer buf.Cstruct.buffer) ;
     Hash buf
 
-  let direct ?(key=Cstruct.create_unsafe 0) inbuf len =
+  let digest ?(key=Cstruct.create_unsafe 0) inbuf len =
     if len < 1 || len > 64 then
       invalid_arg "Blake2b.direct: size must be between 1 and 64" ;
     let outbuf = Cstruct.create len in
     or_fail ~msg:"Blake2b.direct"
-      (fun () -> direct outbuf.Cstruct.buffer
+      (fun () -> digest outbuf.Cstruct.buffer
           inbuf.Cstruct.buffer key.buffer) ;
     Hash outbuf
 end

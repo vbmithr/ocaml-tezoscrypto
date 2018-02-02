@@ -2,9 +2,9 @@
 
 (executable
  ((name test)
-  (libraries (blake2 alcotest))))
+  (libraries (tezoscrypto hex alcotest))))
 
 (alias
- ((name    runtest-blake2)
+ ((name    runtest-tezoscrypto)
   (deps    (test.exe))
   (action  (run ${<}))))
