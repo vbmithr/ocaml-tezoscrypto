@@ -5,22 +5,22 @@
 
 module Blake2b : sig
   type t
-  type hash = Hash of Cstruct.t
+  type hash = Hash of Bigstring.t
 
-  val init : ?key:Cstruct.t -> int -> t
+  val init : ?key:Bigstring.t -> int -> t
   (** [init ?key size] is a blake2b context for hashes of size [size],
       using [key] if present. *)
 
-  val update : t -> Cstruct.t -> unit
+  val update : t -> Bigstring.t -> unit
   (** [update t buf] updates [t] with the data in [buf]. *)
 
   val final : t -> hash
   (** [final t] is the blake2b hash of all data updated in [t] so
       far. *)
 
-  val direct : ?key:Cstruct.t -> Cstruct.t -> int -> hash
-  (** [direct ?key outbuf inbuf] writes the blake2b hash of [inbuf] in
-      [outbuf], using [key] is present. *)
+  val direct : ?key:Bigstring.t -> Bigstring.t -> int -> hash
+  (** [direct ?key inbuf len] is the blake2b hash of length [len],
+      using [key] is present. *)
 end
 
 (*---------------------------------------------------------------------------
